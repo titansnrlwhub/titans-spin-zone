@@ -1,0 +1,16 @@
+{
+  "name": "Titans Spin Zone",
+  "short_name": "Spin Zone",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07172f",
+  "theme_color": "#07172f",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
