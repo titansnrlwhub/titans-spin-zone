@@ -66,7 +66,19 @@ h2{font-size:22px;margin:0 0 8px}
 .presentation .wheel-panel{padding:clamp(12px,2vw,24px)}
 .presentation .wheelwrap{width:min(100%,760px)}
 .presentation .question{font-size:clamp(24px,4vw,38px)}
-.presentation .picks,.presentation .tools,.presentation .player-entry,.presentation .footer{display:none!important}
+.presentation .picks,.presentation .tools,.presentation .footer{display:none!important}
+.presentation .player-entry{display:block!important}
+.presentation .player-entry input{font-size:22px;padding:16px;border:2px solid var(--gold)}
+.player-banner{display:none;margin:10px auto 0;color:var(--gold);font-weight:900;font-size:clamp(14px,2vw,20px);letter-spacing:1.5px}
+.presentation .player-banner{display:block}
+.setup-toggle{position:fixed;z-index:20;top:max(10px,env(safe-area-inset-top));right:12px;padding:10px 14px;font-size:11px}
+.presentation .result{min-height:190px;padding:clamp(18px,3vw,28px)}
+.presentation .question{font-size:clamp(27px,4.4vw,46px);line-height:1.2}
+.presentation .answer-area{padding:18px}
+.presentation .answer-area textarea{min-height:120px;font-size:17px}
+.presentation #done .done-card{margin-top:16px;padding:20px;border:2px solid var(--gold);border-radius:16px;background:linear-gradient(145deg,#173f61,#081b30);text-align:center}
+.presentation #done .done-card strong{display:block;color:var(--gold);font-size:clamp(23px,4vw,36px);margin-bottom:8px}
+.presentation #done .done-card p{margin:6px 0;color:#e7eef7;line-height:1.5}
 .presentation .panel{box-shadow:0 18px 50px #0009}
 .presentation #exitPresentation{display:inline-flex}
 #exitPresentation{display:none}
@@ -74,13 +86,15 @@ h2{font-size:22px;margin:0 0 8px}
 @media(orientation:landscape) and (min-width:761px){body{padding-top:10px}.wheelwrap{max-height:72vh;width:auto;max-width:100%}}
 </style>
 </head>
-<body>
+<body class="presentation">
 <main id="app">
 <header>
  <div class="brandline"><img id="brandLogo" alt="TitansNRLWHub logo"><div class="brand" id="brandText">TITANSNRLWHUB PRESENTS</div></div>
  <h1>THE TITANS SPIN ZONE</h1>
  <p class="sub">Five spins. Five questions. One Titan.</p>
+ <div id="playerBanner" class="player-banner" aria-live="polite">PLAYER INTERVIEW</div>
 </header>
+<button class="tertiary setup-toggle" id="exitPresentation">SETUP / EDIT</button>
 <section class="layout">
  <div class="panel wheel-panel">
   <div class="wheelwrap">
@@ -125,7 +139,6 @@ h2{font-size:22px;margin:0 0 8px}
    <button class="tertiary" id="editQuestions">EDIT QUESTIONS</button>
    <button class="tertiary" id="uploadLogo">ADD YOUR LOGO</button>
    <button class="secondary" id="presentation">PRESENTATION MODE</button>
-   <button class="tertiary" id="exitPresentation">EXIT PRESENTATION</button>
   </div>
   <input id="logoFile" type="file" accept="image/*" hidden>
   <div class="editor" id="editor">
@@ -155,13 +168,19 @@ function drawRotation(deg){
  wheelLabels.setAttribute('transform',`rotate(${deg} 200 200)`);
  wheelLabels.querySelectorAll('text').forEach(t=>t.setAttribute('transform',`rotate(${-deg})`));
 }
+function updatePlayerBanner(){
+ const name=$('player').value.trim();
+ $('playerBanner').textContent=name?('NOW INTERVIEWING: '+name.toUpperCase()):'PLAYER INTERVIEW';
+}
+$('player').addEventListener('input',updatePlayerBanner);
 function refresh(){
+ updatePlayerBanner();
  const c=picked.length;
  $('count').textContent=c+' of 5 questions answered';
  $('bar').style.width=(c*20)+'%';
  $('heading').textContent=c===5?'Interview complete!':c===0?'Ready for the first spin?':(5-c)+' spins to go';
  $('picks').innerHTML=picked.length?picked.map(i=>`<div class="pick"><b>Question ${i+1}:</b> ${escapeHTML(questions[i])}</div>`).join(''):'Your five picks will appear here.';
- $('done').innerHTML=c===5?'<div class="done">Five questions completed. Reset for another player.</div>':'';
+ $('done').innerHTML=c===5?'<div class="done-card"><strong>INTERVIEW COMPLETE!</strong><p>Five unique questions answered. Great work!</p><p>Export the interview to keep a copy of the questions and notes before resetting for the next Titan.</p></div>':'';
  spinBtn.disabled=spinning||c===5;
  spinBtn.textContent=c===5?'FIVE SPINS COMPLETE':'SPIN THE WHEEL';
 }
@@ -266,7 +285,7 @@ $('exitPresentation').addEventListener('click',async()=>{
  document.body.classList.remove('presentation');
  if(document.fullscreenElement&&document.exitFullscreen){try{await document.exitFullscreen()}catch(e){}}
 });
-document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement)document.body.classList.remove('presentation')});
+document.addEventListener('fullscreenchange',()=>{});
 drawRotation(0);refresh();
 if('serviceWorker' in navigator&&location.protocol!=='file:'){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
 </script>
