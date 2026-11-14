@@ -2,6 +2,7 @@
   "name": "Titans Spin Zone",
   "short_name": "Spin Zone",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#07172f",
   "theme_color": "#07172f",

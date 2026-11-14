@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07172f">
+<meta name="description" content="TitansNRLWHub player interview wheel. Five spins, five unique questions, one Titan.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Titans Spin Zone">
@@ -50,6 +51,11 @@ h2{font-size:22px;margin:0 0 8px}
 .pick{display:block;background:#102d4b;border:1px solid #315878;border-radius:12px;padding:8px 10px;margin:7px 0;font-size:13px;line-height:1.35}
 .pick b{color:var(--gold)}
 .done{color:var(--gold);font-weight:800;margin-top:12px}
+.answer-area{margin-top:16px;padding:14px;border-radius:15px;background:#0a2038;border:1px solid #315878}
+.answer-area textarea{min-height:100px;resize:vertical;line-height:1.45;margin-bottom:8px}
+.answer-actions{display:flex;gap:8px;flex-wrap:wrap}
+.answer-actions button{font-size:12px;padding:10px 14px}
+#saveStatus{margin-top:8px}
 .tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;justify-content:center}
 .editor{display:none;margin-top:16px;padding:15px;background:#0a2038;border:1px solid #315878;border-radius:15px}
 .editor.open{display:block}
@@ -104,6 +110,15 @@ h2{font-size:22px;margin:0 0 8px}
    <div class="num" id="num">QUESTION READY</div>
    <p class="question muted" id="question">Enter the player's name, then spin the wheel to reveal the first question.</p>
   </div>
+  <div class="answer-area">
+   <label for="answer">PLAYER'S ANSWER / INTERVIEW NOTES</label>
+   <textarea id="answer" rows="4" placeholder="Type the player's answer or your interview notes here..."></textarea>
+   <div class="answer-actions">
+    <button class="tertiary" id="saveAnswer">SAVE ANSWER</button>
+    <button class="tertiary" id="exportInterview">EXPORT INTERVIEW</button>
+   </div>
+   <div class="count" id="saveStatus" aria-live="polite">Answers are kept in this browser until you export them.</div>
+  </div>
   <div class="picks"><h3>QUESTIONS PICKED</h3><div id="picks" class="muted">Your five picks will appear here.</div></div>
   <div id="done"></div>
   <div class="tools">
@@ -132,6 +147,7 @@ h2{font-size:22px;margin:0 0 8px}
 const DEFAULT_QUESTIONS=["What first got you interested in rugby league?", "Who was your rugby league idol growing up?", "What's your favourite memory from playing for the Titans?", "Who makes you laugh the most in the team?", "What's one thing supporters might not know about you?", "What's your pre-game routine?", "If you weren't a rugby league player, what would you be doing?", "Who is the biggest prankster in the squad?", "What's your favourite food?", "What's the best advice you've ever received?", "Which teammate would you trust to organise a holiday?", "What's your favourite thing about being part of the Titans?", "What's one skill you'd love to have outside rugby league?", "Who was your toughest opponent?", "What's your most embarrassing on-field moment?", "What's one goal you want to achieve in rugby league?", "What's your favourite way to spend a day off?", "If you could swap positions with a teammate, who would it be?", "What message would you give to young girls wanting to play rugby league?", "Describe yourself in three words."];
 const $=id=>document.getElementById(id);
 let questions=loadQuestions(),picked=[],rotation=0,spinning=false;
+let answers={},currentQuestion=null;
 const wheelDisk=$('wheelDisk'),wheelLabels=$('wheelLabels'),spinBtn=$('spin');
 function loadQuestions(){try{const q=JSON.parse(localStorage.getItem('tsz_questions'));return Array.isArray(q)&&q.length===20&&q.every(x=>typeof x==='string'&&x.trim())?q:DEFAULT_QUESTIONS.slice()}catch(e){return DEFAULT_QUESTIONS.slice()}}
 function drawRotation(deg){
@@ -154,6 +170,7 @@ function spin(){
  if(spinning||picked.length>=5)return;
  const name=$('player').value.trim();
  if(!name){$('player').focus();$('question').textContent='Please enter the player name before spinning.';return}
+ if(currentQuestion!==null) answers[currentQuestion]=$('answer').value.trim();
  const available=questions.map((_,i)=>i).filter(i=>!picked.includes(i));
  const chosen=available[Math.floor(Math.random()*available.length)];
  const target=(360-(chosen+.5)*18+360)%360;
@@ -168,20 +185,45 @@ function spin(){
   else{
    rotation=total;drawRotation(rotation);spinning=false;picked.push(chosen);
    $('num').textContent=name.toUpperCase()+' | QUESTION '+(chosen+1);
-   $('question').textContent=questions[chosen];refresh();
+   $('question').textContent=questions[chosen];
+   currentQuestion=chosen;
+   $('answer').value=answers[chosen]||'';
+   $('saveStatus').textContent='Answer field ready for Question '+(chosen+1)+'.';
+   refresh();
   }
  }
  requestAnimationFrame(frame);
 }
 function reset(){
  if(spinning)return;
- picked=[];rotation=0;drawRotation(0);
+ if(currentQuestion!==null) answers[currentQuestion]=$('answer').value.trim();
+ picked=[];answers={};currentQuestion=null;rotation=0;drawRotation(0);
+ $('answer').value='';$('saveStatus').textContent='New interview ready. Previous interviews can be exported before resetting.';
  $('num').textContent='QUESTION READY';
  $('question').textContent='Enter the next player name, then spin the wheel.';
  $('player').value='';refresh();
 }
 $('spin').addEventListener('click',spin);
 $('reset').addEventListener('click',reset);
+$('saveAnswer').addEventListener('click',()=>{
+ if(currentQuestion===null){$('saveStatus').textContent='Spin the wheel to select a question first.';return}
+ answers[currentQuestion]=$('answer').value.trim();
+ $('saveStatus').textContent='Answer saved for Question '+(currentQuestion+1)+'.';
+});
+$('exportInterview').addEventListener('click',()=>{
+ if(currentQuestion!==null) answers[currentQuestion]=$('answer').value.trim();
+ const player=$('player').value.trim()||'Titans player';
+ const lines=['TITANSNRLWHUB | THE TITANS SPIN ZONE','Player: '+player,'Date: '+new Date().toLocaleString(),'','INTERVIEW QUESTIONS AND ANSWERS'];
+ picked.forEach((idx,n)=>{
+  lines.push('',(n+1)+'. Question '+(idx+1)+': '+questions[idx]);
+  lines.push('Answer: '+(answers[idx]||'[No answer recorded]'));
+ });
+ const blob=new Blob([lines.join('\\n')],{type:'text/plain;charset=utf-8'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='Titans-Spin-Zone-'+player.replace(/[^a-z0-9]+/gi,'-')+'.txt';
+ document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+ $('saveStatus').textContent='Interview exported as a text file.';
+});
 $('editQuestions').addEventListener('click',()=>{
  $('questionEditor').value=questions.join('\n');$('editor').classList.toggle('open');
  $('editorStatus').textContent='Your saved questions stay on this device and browser.';
