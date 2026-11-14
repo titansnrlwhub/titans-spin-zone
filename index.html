@@ -1,31 +1,231 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#07172f"><meta name="apple-mobile-web-app-capable" content="yes">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07172f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Titans Spin Zone">
-<link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
 <title>Titans Spin Zone</title>
 <style>
 :root{--navy:#07172f;--blue:#0878c9;--gold:#f5c542;--muted:#b9c7d8}
-*{box-sizing:border-box}body{margin:0;padding:18px 14px 36px;background:radial-gradient(circle at top,#123d68,#07172f 58%,#040b17);color:white;font-family:Arial,sans-serif;min-height:100vh}
-main{max-width:980px;margin:auto}header{text-align:center;margin:5px 0 20px}.brand{font-size:12px;letter-spacing:3px;color:var(--gold);font-weight:900}h1{font-size:clamp(30px,6vw,56px);font-style:italic;line-height:1;margin:9px 0;text-shadow:3px 3px #034c84}.sub{color:var(--muted);margin:0}
-.layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(270px,.9fr);gap:20px;align-items:center}.panel{background:#041326;border:1px solid #8e762e;border-radius:22px;padding:18px;box-shadow:0 18px 40px #0006}
-.wheelwrap{position:relative;width:min(100%,560px);margin:auto;aspect-ratio:1}#wheel{width:100%;height:100%;display:block;filter:drop-shadow(0 8px 16px #0009);transform:rotate(0deg);transform-origin:50% 50%;transition:transform 4.5s cubic-bezier(.12,.7,.12,1)}
-.pointer{position:absolute;z-index:2;top:-5px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:43px solid var(--gold);filter:drop-shadow(0 3px 2px #000)}
-.hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:22%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#fff,var(--gold));border:7px solid var(--navy);box-shadow:0 0 0 3px var(--gold);color:var(--navy);font-size:clamp(11px,2vw,17px);font-weight:1000}
-.controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0 2px}button{border:0;border-radius:999px;padding:14px 20px;font-size:14px;font-weight:900;cursor:pointer}button:disabled{opacity:.45}.primary{background:var(--gold);color:var(--navy);box-shadow:0 4px #a77913}.secondary{background:#123d68;color:white;border:1px solid #3679ad}
-label{display:block;color:var(--gold);font-size:12px;font-weight:900;letter-spacing:1px;margin:0 0 7px}input{width:100%;padding:12px 13px;border-radius:10px;border:1px solid #416080;background:#0b2038;color:white;font-size:16px;margin-bottom:16px}
-h2{font-size:22px;margin:0 0 8px}.kicker{font-size:11px;color:var(--gold);font-weight:900;letter-spacing:1.5px}.progress{height:9px;background:#20344e;border-radius:20px;overflow:hidden;margin:14px 0 7px}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--gold));transition:width .25s}.count{color:var(--muted);font-size:13px}
-.result{margin-top:17px;padding:18px;border-radius:16px;background:linear-gradient(145deg,#0e3154,#0a2039);border:1px solid #28577d;min-height:155px}.num{font-size:12px;color:var(--gold);font-weight:900;letter-spacing:1.5px}.question{font-size:clamp(19px,3vw,25px);font-weight:800;line-height:1.3;margin:10px 0 0}.muted{color:#c4d0dd;line-height:1.5}.picks{margin-top:17px}.picks h3{font-size:13px;color:var(--muted);letter-spacing:1px}.pick{display:block;background:#102d4b;border:1px solid #315878;border-radius:12px;padding:8px 10px;margin:7px 0;font-size:13px;line-height:1.35}.pick b{color:var(--gold)}.done{color:var(--gold);font-weight:800;margin-top:12px}.footer{text-align:center;color:#8ea4bb;font-size:12px;margin-top:20px}
-@media(max-width:720px){.layout{grid-template-columns:1fr}.panel{padding:14px}.wheelwrap{width:min(100%,440px)}}
-</style></head><body><main><header><div class="brand">TITANSNRLWHUB PRESENTS</div><h1>THE TITANS SPIN ZONE</h1><p class="sub">Five spins. Five questions. One Titan.</p></header>
-<section class="layout"><div class="panel"><div class="wheelwrap"><div class="pointer"></div><svg id="wheel" viewBox="0 0 400 400" role="img" aria-label="Wheel with numbered segments 1 to 20"><path d="M200 200 L200.00 10.00 A190 190 0 0 1 258.71 19.30 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><text x="222.68" y="56.79" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">1</text><path d="M200 200 L258.71 19.30 A190 190 0 0 1 311.68 46.29 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><text x="265.83" y="70.80" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">2</text><path d="M200 200 L311.68 46.29 A190 190 0 0 1 353.71 88.32 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><text x="302.53" y="97.47" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">3</text><path d="M200 200 L353.71 88.32 A190 190 0 0 1 380.70 141.29 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><text x="329.20" y="134.17" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">4</text><path d="M200 200 L380.70 141.29 A190 190 0 0 1 390.00 200.00 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><text x="343.21" y="177.32" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">5</text><path d="M200 200 L390.00 200.00 A190 190 0 0 1 380.70 258.71 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><text x="343.21" y="222.68" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">6</text><path d="M200 200 L380.70 258.71 A190 190 0 0 1 353.71 311.68 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><text x="329.20" y="265.83" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">7</text><path d="M200 200 L353.71 311.68 A190 190 0 0 1 311.68 353.71 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><text x="302.53" y="302.53" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">8</text><path d="M200 200 L311.68 353.71 A190 190 0 0 1 258.71 380.70 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><text x="265.83" y="329.20" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">9</text><path d="M200 200 L258.71 380.70 A190 190 0 0 1 200.00 390.00 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><text x="222.68" y="343.21" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">10</text><path d="M200 200 L200.00 390.00 A190 190 0 0 1 141.29 380.70 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><text x="177.32" y="343.21" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">11</text><path d="M200 200 L141.29 380.70 A190 190 0 0 1 88.32 353.71 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><text x="134.17" y="329.20" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">12</text><path d="M200 200 L88.32 353.71 A190 190 0 0 1 46.29 311.68 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><text x="97.47" y="302.53" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">13</text><path d="M200 200 L46.29 311.68 A190 190 0 0 1 19.30 258.71 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><text x="70.80" y="265.83" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">14</text><path d="M200 200 L19.30 258.71 A190 190 0 0 1 10.00 200.00 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><text x="56.79" y="222.68" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">15</text><path d="M200 200 L10.00 200.00 A190 190 0 0 1 19.30 141.29 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><text x="56.79" y="177.32" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">16</text><path d="M200 200 L19.30 141.29 A190 190 0 0 1 46.29 88.32 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><text x="70.80" y="134.17" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">17</text><path d="M200 200 L46.29 88.32 A190 190 0 0 1 88.32 46.29 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><text x="97.47" y="97.47" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">18</text><path d="M200 200 L88.32 46.29 A190 190 0 0 1 141.29 19.30 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><text x="134.17" y="70.80" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">19</text><path d="M200 200 L141.29 19.30 A190 190 0 0 1 200.00 10.00 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><text x="177.32" y="56.79" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle">20</text><circle cx="200" cy="200" r="190" fill="none" stroke="#f5c542" stroke-width="5"/></svg><div class="hub">TITANS</div></div><div class="controls"><button class="primary" id="spin">SPIN THE WHEEL</button><button class="secondary" id="reset">RESET PLAYER</button></div></div>
-<div class="panel"><div class="kicker">PLAYER INTERVIEW</div><label for="player">PLAYER NAME</label><input id="player" type="text" placeholder="Enter player's name" autocomplete="off"><div class="kicker">YOUR INTERVIEW CHALLENGE</div><h2 id="heading">Ready for the first spin?</h2><div class="progress"><span id="bar"></span></div><div class="count" id="count">0 of 5 questions answered</div><div class="result" aria-live="polite"><div class="num" id="num">QUESTION READY</div><p class="muted" id="question">Enter the player's name, then spin the wheel to reveal the first question.</p></div><div class="picks"><h3>QUESTIONS PICKED</h3><div id="picks" class="muted">Your five picks will appear here.</div></div><div id="done"></div></div></section><p class="footer">TitansNRLWHub fan feature. Five unique questions per player.</p></main>
+*{box-sizing:border-box}
+body{margin:0;padding:clamp(12px,2vw,24px);padding-bottom:max(28px,env(safe-area-inset-bottom));background:radial-gradient(circle at top,#123d68,#07172f 58%,#040b17);color:#fff;font-family:Arial,sans-serif;min-height:100vh}
+main{max-width:1180px;margin:auto}
+header{text-align:center;margin:4px 0 20px}
+.brandline{display:flex;justify-content:center;align-items:center;gap:12px;min-height:46px}
+#brandLogo{display:none;max-width:190px;max-height:62px;object-fit:contain}
+.brand{font-size:12px;letter-spacing:3px;color:var(--gold);font-weight:900}
+h1{font-size:clamp(30px,6vw,56px);font-style:italic;line-height:1;margin:8px 0;text-shadow:3px 3px #034c84}
+.sub{color:var(--muted);margin:0}
+.layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:20px;align-items:center}
+.panel{background:#041326;border:1px solid #8e762e;border-radius:22px;padding:clamp(13px,2vw,20px);box-shadow:0 18px 40px #0006}
+.wheelwrap{position:relative;width:min(100%,570px);margin:auto;aspect-ratio:1}
+#wheel{width:100%;height:100%;display:block;filter:drop-shadow(0 8px 16px #0009)}
+.pointer{position:absolute;z-index:3;top:-5px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:43px solid var(--gold);filter:drop-shadow(0 3px 2px #000)}
+.hub{position:absolute;z-index:2;top:50%;left:50%;transform:translate(-50%,-50%);width:22%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#fff,var(--gold));border:7px solid var(--navy);box-shadow:0 0 0 3px var(--gold);color:var(--navy);font-size:clamp(11px,2vw,17px);font-weight:1000;overflow:hidden}
+.hub img{width:82%;height:82%;object-fit:contain;display:none}
+.controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0 2px}
+button{border:0;border-radius:999px;padding:13px 18px;font-size:14px;font-weight:900;cursor:pointer}
+button:disabled{opacity:.45}
+.primary{background:var(--gold);color:var(--navy);box-shadow:0 4px #a77913}
+.secondary{background:#123d68;color:white;border:1px solid #3679ad}
+.tertiary{background:#10253d;color:#dce8f5;border:1px solid #45617d}
+label{display:block;color:var(--gold);font-size:12px;font-weight:900;letter-spacing:1px;margin:0 0 7px}
+input[type=text],textarea{width:100%;padding:12px 13px;border-radius:10px;border:1px solid #416080;background:#0b2038;color:white;font-size:16px;margin-bottom:16px}
+h2{font-size:22px;margin:0 0 8px}
+.kicker{font-size:11px;color:var(--gold);font-weight:900;letter-spacing:1.5px}
+.progress{height:9px;background:#20344e;border-radius:20px;overflow:hidden;margin:14px 0 7px}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--gold));transition:width .25s}
+.count{color:var(--muted);font-size:13px}
+.result{margin-top:17px;padding:18px;border-radius:16px;background:linear-gradient(145deg,#0e3154,#0a2039);border:1px solid #28577d;min-height:150px}
+.num{font-size:12px;color:var(--gold);font-weight:900;letter-spacing:1.5px}
+.question{font-size:clamp(19px,3vw,26px);font-weight:800;line-height:1.3;margin:10px 0 0}
+.muted{color:#c4d0dd;line-height:1.5}
+.picks{margin-top:17px}
+.picks h3{font-size:13px;color:var(--muted);letter-spacing:1px}
+.pick{display:block;background:#102d4b;border:1px solid #315878;border-radius:12px;padding:8px 10px;margin:7px 0;font-size:13px;line-height:1.35}
+.pick b{color:var(--gold)}
+.done{color:var(--gold);font-weight:800;margin-top:12px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;justify-content:center}
+.editor{display:none;margin-top:16px;padding:15px;background:#0a2038;border:1px solid #315878;border-radius:15px}
+.editor.open{display:block}
+.editor textarea{min-height:300px;resize:vertical;line-height:1.5}
+.editor small{display:block;color:var(--muted);margin:-8px 0 12px}
+.footer{text-align:center;color:#8ea4bb;font-size:12px;margin-top:20px}
+.presentation .layout{grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);align-items:center}
+.presentation .wheel-panel{padding:clamp(12px,2vw,24px)}
+.presentation .wheelwrap{width:min(100%,760px)}
+.presentation .question{font-size:clamp(24px,4vw,38px)}
+.presentation .picks,.presentation .tools,.presentation .player-entry,.presentation .footer{display:none!important}
+.presentation .panel{box-shadow:0 18px 50px #0009}
+.presentation #exitPresentation{display:inline-flex}
+#exitPresentation{display:none}
+@media(max-width:760px){.layout,.presentation .layout{grid-template-columns:1fr}.wheelwrap{width:min(100%,500px)}}
+@media(orientation:landscape) and (min-width:761px){body{padding-top:10px}.wheelwrap{max-height:72vh;width:auto;max-width:100%}}
+</style>
+</head>
+<body>
+<main id="app">
+<header>
+ <div class="brandline"><img id="brandLogo" alt="TitansNRLWHub logo"><div class="brand" id="brandText">TITANSNRLWHUB PRESENTS</div></div>
+ <h1>THE TITANS SPIN ZONE</h1>
+ <p class="sub">Five spins. Five questions. One Titan.</p>
+</header>
+<section class="layout">
+ <div class="panel wheel-panel">
+  <div class="wheelwrap">
+   <div class="pointer"></div>
+   <svg id="wheel" viewBox="0 0 400 400" role="img" aria-label="Numbered spinning wheel from 1 to 20">
+    <g id="wheelDisk"><path d="M200 200 L200.00 10.00 A190 190 0 0 1 258.71 19.30 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L258.71 19.30 A190 190 0 0 1 311.68 46.29 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L311.68 46.29 A190 190 0 0 1 353.71 88.32 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L353.71 88.32 A190 190 0 0 1 380.70 141.29 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L380.70 141.29 A190 190 0 0 1 390.00 200.00 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L390.00 200.00 A190 190 0 0 1 380.70 258.71 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L380.70 258.71 A190 190 0 0 1 353.71 311.68 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L353.71 311.68 A190 190 0 0 1 311.68 353.71 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L311.68 353.71 A190 190 0 0 1 258.71 380.70 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L258.71 380.70 A190 190 0 0 1 200.00 390.00 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L200.00 390.00 A190 190 0 0 1 141.29 380.70 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L141.29 380.70 A190 190 0 0 1 88.32 353.71 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L88.32 353.71 A190 190 0 0 1 46.29 311.68 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L46.29 311.68 A190 190 0 0 1 19.30 258.71 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L19.30 258.71 A190 190 0 0 1 10.00 200.00 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L10.00 200.00 A190 190 0 0 1 19.30 141.29 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L19.30 141.29 A190 190 0 0 1 46.29 88.32 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L46.29 88.32 A190 190 0 0 1 88.32 46.29 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L88.32 46.29 A190 190 0 0 1 141.29 19.30 Z" fill="#0878c9" stroke="#f5c542" stroke-width="2"/><path d="M200 200 L141.29 19.30 A190 190 0 0 1 200.00 10.00 Z" fill="#07172f" stroke="#f5c542" stroke-width="2"/><circle cx="200" cy="200" r="190" fill="none" stroke="#f5c542" stroke-width="5"/></g>
+    <g id="wheelLabels"><g transform="translate(222.68 56.79)"><text class="wheel-label" x="0" y="0" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">1</text></g><g transform="translate(265.83 70.80)"><text class="wheel-label" x="0" y="0" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">2</text></g><g transform="translate(302.53 97.47)"><text class="wheel-label" x="0" y="0" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">3</text></g><g transform="translate(329.20 134.17)"><text class="wheel-label" x="0" y="0" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">4</text></g><g transform="translate(343.21 177.32)"><text class="wheel-label" x="0" y="0" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">5</text></g><g transform="translate(343.21 222.68)"><text class="wheel-label" x="0" y="0" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">6</text></g><g transform="translate(329.20 265.83)"><text class="wheel-label" x="0" y="0" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">7</text></g><g transform="translate(302.53 302.53)"><text class="wheel-label" x="0" y="0" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">8</text></g><g transform="translate(265.83 329.20)"><text class="wheel-label" x="0" y="0" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">9</text></g><g transform="translate(222.68 343.21)"><text class="wheel-label" x="0" y="0" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">10</text></g><g transform="translate(177.32 343.21)"><text class="wheel-label" x="0" y="0" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">11</text></g><g transform="translate(134.17 329.20)"><text class="wheel-label" x="0" y="0" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">12</text></g><g transform="translate(97.47 302.53)"><text class="wheel-label" x="0" y="0" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">13</text></g><g transform="translate(70.80 265.83)"><text class="wheel-label" x="0" y="0" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">14</text></g><g transform="translate(56.79 222.68)"><text class="wheel-label" x="0" y="0" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">15</text></g><g transform="translate(56.79 177.32)"><text class="wheel-label" x="0" y="0" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">16</text></g><g transform="translate(70.80 134.17)"><text class="wheel-label" x="0" y="0" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">17</text></g><g transform="translate(97.47 97.47)"><text class="wheel-label" x="0" y="0" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">18</text></g><g transform="translate(134.17 70.80)"><text class="wheel-label" x="0" y="0" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">19</text></g><g transform="translate(177.32 56.79)"><text class="wheel-label" x="0" y="0" fill="#f5c542" font-size="15" font-weight="900" text-anchor="middle" dominant-baseline="middle" transform="rotate(0)">20</text></g></g>
+   </svg>
+   <div class="hub"><span id="hubText">TITANS</span><img id="hubLogo" alt=""></div>
+  </div>
+  <div class="controls">
+   <button class="primary" id="spin">SPIN THE WHEEL</button>
+   <button class="secondary" id="reset">RESET PLAYER</button>
+  </div>
+ </div>
+ <div class="panel">
+  <div class="player-entry">
+   <div class="kicker">PLAYER INTERVIEW</div>
+   <label for="player">PLAYER NAME</label>
+   <input id="player" type="text" placeholder="Enter player's name" autocomplete="off">
+  </div>
+  <div class="kicker">YOUR INTERVIEW CHALLENGE</div>
+  <h2 id="heading">Ready for the first spin?</h2>
+  <div class="progress"><span id="bar"></span></div>
+  <div class="count" id="count">0 of 5 questions answered</div>
+  <div class="result" aria-live="polite">
+   <div class="num" id="num">QUESTION READY</div>
+   <p class="question muted" id="question">Enter the player's name, then spin the wheel to reveal the first question.</p>
+  </div>
+  <div class="picks"><h3>QUESTIONS PICKED</h3><div id="picks" class="muted">Your five picks will appear here.</div></div>
+  <div id="done"></div>
+  <div class="tools">
+   <button class="tertiary" id="editQuestions">EDIT QUESTIONS</button>
+   <button class="tertiary" id="uploadLogo">ADD YOUR LOGO</button>
+   <button class="secondary" id="presentation">PRESENTATION MODE</button>
+   <button class="tertiary" id="exitPresentation">EXIT PRESENTATION</button>
+  </div>
+  <input id="logoFile" type="file" accept="image/*" hidden>
+  <div class="editor" id="editor">
+   <label for="questionEditor">YOUR 20 INTERVIEW QUESTIONS</label>
+   <small>Enter one question per line. Keep exactly 20 questions so each wheel number has a matching question.</small>
+   <textarea id="questionEditor" spellcheck="true"></textarea>
+   <div class="controls">
+    <button class="primary" id="saveQuestions">SAVE QUESTIONS</button>
+    <button class="secondary" id="restoreQuestions">RESTORE ORIGINAL 20</button>
+    <button class="tertiary" id="closeEditor">CLOSE</button>
+   </div>
+   <div class="count" id="editorStatus" aria-live="polite"></div>
+  </div>
+ </div>
+</section>
+<p class="footer">A TitansNRLWHub fan feature. Five unique questions per player.</p>
+</main>
 <script>
-const questions=["What first got you interested in rugby league?", "Who was your rugby league idol growing up?", "What's your favourite memory from playing for the Titans?", "Who makes you laugh the most in the team?", "What's one thing supporters might not know about you?", "What's your pre-game routine?", "If you weren't a rugby league player, what would you be doing?", "Who is the biggest prankster in the squad?", "What's your favourite food?", "What's the best advice you've ever received?", "Which teammate would you trust to organise a holiday?", "What's your favourite thing about being part of the Titans?", "What's one skill you'd love to have outside rugby league?", "Who was your toughest opponent?", "What's your most embarrassing on-field moment?", "What's one goal you want to achieve in rugby league?", "What's your favourite way to spend a day off?", "If you could swap positions with a teammate, who would it be?", "What message would you give to young girls wanting to play rugby league?", "Describe yourself in three words."];let picked=[],rotation=0,spinning=false;const wheel=document.getElementById('wheel'),spinBtn=document.getElementById('spin');
-function refresh(){let c=picked.length;document.getElementById('count').textContent=c+' of 5 questions answered';document.getElementById('bar').style.width=(c*20)+'%';document.getElementById('heading').textContent=c===5?'Interview complete!':c===0?'Ready for the first spin?':(5-c)+' spins to go';document.getElementById('picks').innerHTML=picked.length?picked.map(i=>'<div class="pick"><b>Question '+(i+1)+':</b> '+questions[i]+'</div>').join(''):'Your five picks will appear here.';document.getElementById('done').innerHTML=c===5?'<div class="done">Five questions completed. Reset to interview another player.</div>':'';spinBtn.disabled=spinning||c===5;spinBtn.textContent=c===5?'FIVE SPINS COMPLETE':'SPIN THE WHEEL'}
-function spin(){if(spinning||picked.length>=5)return;let name=document.getElementById('player').value.trim();if(!name){document.getElementById('player').focus();document.getElementById('question').textContent='Please enter the player name before spinning.';return}let available=questions.map((_,i)=>i).filter(i=>!picked.includes(i));let chosen=available[Math.floor(Math.random()*available.length)],arc=18,target=(360-(chosen+.5)*arc+360)%360,current=((rotation%360)+360)%360,delta=(target-current+360)%360,start=rotation,total=rotation+360*(5+Math.floor(Math.random()*3))+delta,t0=performance.now(),duration=4500;spinning=true;refresh();function frame(now){let t=Math.min(1,(now-t0)/duration),ease=1-Math.pow(1-t,5);rotation=start+(total-start)*ease;wheel.style.transform='rotate('+rotation+'deg)';if(t<1)requestAnimationFrame(frame);else{rotation=total;spinning=false;picked.push(chosen);document.getElementById('num').textContent=name.toUpperCase()+' | QUESTION '+(chosen+1);document.getElementById('question').textContent=questions[chosen];refresh()}}requestAnimationFrame(frame)}
-function reset(){if(spinning)return;picked=[];rotation=0;wheel.style.transition='none';wheel.style.transform='rotate(0deg)';void wheel.getBoundingClientRect();wheel.style.transition='transform 4.5s cubic-bezier(.12,.7,.12,1)';document.getElementById('num').textContent='QUESTION READY';document.getElementById('question').textContent='Enter the next player name, then spin the wheel.';document.getElementById('player').value='';refresh()}
-spinBtn.addEventListener('click',spin);document.getElementById('reset').addEventListener('click',reset);refresh();
-if('serviceWorker' in navigator && location.protocol!=='file:'){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
-</script></body></html>
+const DEFAULT_QUESTIONS=["What first got you interested in rugby league?", "Who was your rugby league idol growing up?", "What's your favourite memory from playing for the Titans?", "Who makes you laugh the most in the team?", "What's one thing supporters might not know about you?", "What's your pre-game routine?", "If you weren't a rugby league player, what would you be doing?", "Who is the biggest prankster in the squad?", "What's your favourite food?", "What's the best advice you've ever received?", "Which teammate would you trust to organise a holiday?", "What's your favourite thing about being part of the Titans?", "What's one skill you'd love to have outside rugby league?", "Who was your toughest opponent?", "What's your most embarrassing on-field moment?", "What's one goal you want to achieve in rugby league?", "What's your favourite way to spend a day off?", "If you could swap positions with a teammate, who would it be?", "What message would you give to young girls wanting to play rugby league?", "Describe yourself in three words."];
+const $=id=>document.getElementById(id);
+let questions=loadQuestions(),picked=[],rotation=0,spinning=false;
+const wheelDisk=$('wheelDisk'),wheelLabels=$('wheelLabels'),spinBtn=$('spin');
+function loadQuestions(){try{const q=JSON.parse(localStorage.getItem('tsz_questions'));return Array.isArray(q)&&q.length===20&&q.every(x=>typeof x==='string'&&x.trim())?q:DEFAULT_QUESTIONS.slice()}catch(e){return DEFAULT_QUESTIONS.slice()}}
+function drawRotation(deg){
+ wheelDisk.setAttribute('transform',`rotate(${deg} 200 200)`);
+ wheelLabels.setAttribute('transform',`rotate(${deg} 200 200)`);
+ wheelLabels.querySelectorAll('text').forEach(t=>t.setAttribute('transform',`rotate(${-deg})`));
+}
+function refresh(){
+ const c=picked.length;
+ $('count').textContent=c+' of 5 questions answered';
+ $('bar').style.width=(c*20)+'%';
+ $('heading').textContent=c===5?'Interview complete!':c===0?'Ready for the first spin?':(5-c)+' spins to go';
+ $('picks').innerHTML=picked.length?picked.map(i=>`<div class="pick"><b>Question ${i+1}:</b> ${escapeHTML(questions[i])}</div>`).join(''):'Your five picks will appear here.';
+ $('done').innerHTML=c===5?'<div class="done">Five questions completed. Reset for another player.</div>':'';
+ spinBtn.disabled=spinning||c===5;
+ spinBtn.textContent=c===5?'FIVE SPINS COMPLETE':'SPIN THE WHEEL';
+}
+function escapeHTML(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function spin(){
+ if(spinning||picked.length>=5)return;
+ const name=$('player').value.trim();
+ if(!name){$('player').focus();$('question').textContent='Please enter the player name before spinning.';return}
+ const available=questions.map((_,i)=>i).filter(i=>!picked.includes(i));
+ const chosen=available[Math.floor(Math.random()*available.length)];
+ const target=(360-(chosen+.5)*18+360)%360;
+ const current=((rotation%360)+360)%360;
+ const start=rotation,total=rotation+360*(5+Math.floor(Math.random()*3))+(target-current+360)%360;
+ const t0=performance.now(),duration=4700;
+ spinning=true;refresh();
+ function frame(now){
+  const t=Math.min(1,(now-t0)/duration),ease=1-Math.pow(1-t,5);
+  rotation=start+(total-start)*ease;drawRotation(rotation);
+  if(t<1)requestAnimationFrame(frame);
+  else{
+   rotation=total;drawRotation(rotation);spinning=false;picked.push(chosen);
+   $('num').textContent=name.toUpperCase()+' | QUESTION '+(chosen+1);
+   $('question').textContent=questions[chosen];refresh();
+  }
+ }
+ requestAnimationFrame(frame);
+}
+function reset(){
+ if(spinning)return;
+ picked=[];rotation=0;drawRotation(0);
+ $('num').textContent='QUESTION READY';
+ $('question').textContent='Enter the next player name, then spin the wheel.';
+ $('player').value='';refresh();
+}
+$('spin').addEventListener('click',spin);
+$('reset').addEventListener('click',reset);
+$('editQuestions').addEventListener('click',()=>{
+ $('questionEditor').value=questions.join('\n');$('editor').classList.toggle('open');
+ $('editorStatus').textContent='Your saved questions stay on this device and browser.';
+});
+$('closeEditor').addEventListener('click',()=>$('editor').classList.remove('open'));
+$('saveQuestions').addEventListener('click',()=>{
+ const list=$('questionEditor').value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+ if(list.length!==20){$('editorStatus').textContent=`You have ${list.length} questions. Please enter exactly 20, one per line.`;return}
+ questions=list;
+ try{localStorage.setItem('tsz_questions',JSON.stringify(questions));$('editorStatus').textContent='Your 20 questions have been saved on this device.'}
+ catch(e){$('editorStatus').textContent='Could not save on this device. Keep this browser data available.'}
+ picked=[];rotation=0;drawRotation(0);$('num').textContent='QUESTIONS UPDATED';$('question').textContent='Your question bank is ready. Enter a player name and spin.';refresh();
+});
+$('restoreQuestions').addEventListener('click',()=>{
+ questions=DEFAULT_QUESTIONS.slice();$('questionEditor').value=questions.join('\n');
+ try{localStorage.removeItem('tsz_questions')}catch(e){}
+ $('editorStatus').textContent='Original 20 questions restored. Tap Save Questions to confirm.';
+});
+$('uploadLogo').addEventListener('click',()=>$('logoFile').click());
+$('logoFile').addEventListener('change',e=>{
+ const file=e.target.files&&e.target.files[0];if(!file)return;
+ if(!file.type.startsWith('image/'))return;
+ const reader=new FileReader();
+ reader.onload=()=>{
+  try{localStorage.setItem('tsz_logo',reader.result);applyLogo(reader.result)}
+  catch(err){alert('That image is too large to save. Try a smaller PNG or JPG logo.')}
+ };
+ reader.readAsDataURL(file);e.target.value='';
+});
+function applyLogo(src){
+ $('brandLogo').src=src;$('brandLogo').style.display='block';$('brandText').style.display='none';
+ $('hubLogo').src=src;$('hubLogo').style.display='block';$('hubText').style.display='none';
+}
+try{const savedLogo=localStorage.getItem('tsz_logo');if(savedLogo)applyLogo(savedLogo)}catch(e){}
+$('presentation').addEventListener('click',async()=>{
+ document.body.classList.add('presentation');
+ if(document.documentElement.requestFullscreen){try{await document.documentElement.requestFullscreen()}catch(e){}}
+});
+$('exitPresentation').addEventListener('click',async()=>{
+ document.body.classList.remove('presentation');
+ if(document.fullscreenElement&&document.exitFullscreen){try{await document.exitFullscreen()}catch(e){}}
+});
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement)document.body.classList.remove('presentation')});
+drawRotation(0);refresh();
+if('serviceWorker' in navigator&&location.protocol!=='file:'){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
+</script>
+</body></html>
